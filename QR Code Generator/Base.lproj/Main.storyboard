@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,16 +13,79 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eRx-u9-qij">
+                                <rect key="frame" x="37.5" y="30" width="300" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="7Er-Nw-jdP"/>
+                                    <constraint firstAttribute="width" constant="300" id="Uyg-FS-hvM"/>
+                                </constraints>
+                            </imageView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="SQe-D0-EQm">
+                                <rect key="frame" x="37.5" y="567.5" width="300" height="29"/>
+                                <segments>
+                                    <segment title="L"/>
+                                    <segment title="M"/>
+                                    <segment title="Q"/>
+                                    <segment title="H"/>
+                                </segments>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Correction Level" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V0I-38-rE3">
+                                <rect key="frame" x="37.5" y="536.5" width="131" height="21"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="QR Code Contents" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LL4-xC-PZm">
+                                <rect key="frame" x="37.5" y="350" width="148" height="20.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="gn2-Oj-aGs">
+                                <rect key="frame" x="37.5" y="376.5" width="300" height="150"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="yRJ-9V-zA4"/>
+                                </constraints>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="gn2-Oj-aGs" firstAttribute="leading" secondItem="LL4-xC-PZm" secondAttribute="leading" id="0gy-S1-Tmg"/>
+                            <constraint firstItem="LL4-xC-PZm" firstAttribute="leading" secondItem="eRx-u9-qij" secondAttribute="leading" id="19U-CP-PIp"/>
+                            <constraint firstItem="gn2-Oj-aGs" firstAttribute="top" secondItem="LL4-xC-PZm" secondAttribute="bottom" constant="6" id="3Ek-V0-Uwy"/>
+                            <constraint firstItem="LL4-xC-PZm" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="eRx-u9-qij" secondAttribute="trailing" id="Cxk-TO-f8S"/>
+                            <constraint firstItem="eRx-u9-qij" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="Dkb-WO-Y2k"/>
+                            <constraint firstItem="eRx-u9-qij" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="I2U-dW-IA9"/>
+                            <constraint firstItem="V0I-38-rE3" firstAttribute="top" secondItem="gn2-Oj-aGs" secondAttribute="bottom" constant="10" id="PO5-js-Tqu"/>
+                            <constraint firstItem="V0I-38-rE3" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="eRx-u9-qij" secondAttribute="trailing" id="RgC-Pm-Ter"/>
+                            <constraint firstItem="SQe-D0-EQm" firstAttribute="leading" secondItem="eRx-u9-qij" secondAttribute="leading" id="TwB-PG-Ic1"/>
+                            <constraint firstItem="SQe-D0-EQm" firstAttribute="top" secondItem="V0I-38-rE3" secondAttribute="bottom" constant="10" id="TzY-fK-F2y"/>
+                            <constraint firstItem="V0I-38-rE3" firstAttribute="leading" secondItem="LL4-xC-PZm" secondAttribute="leading" id="gxG-J3-uyp"/>
+                            <constraint firstItem="SQe-D0-EQm" firstAttribute="trailing" secondItem="eRx-u9-qij" secondAttribute="trailing" id="mZM-GZ-Hq6"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="SQe-D0-EQm" secondAttribute="bottom" constant="20" id="oTQ-gN-9eY"/>
+                            <constraint firstItem="gn2-Oj-aGs" firstAttribute="trailing" secondItem="eRx-u9-qij" secondAttribute="trailing" id="oqk-J1-ibe"/>
+                            <constraint firstItem="LL4-xC-PZm" firstAttribute="top" secondItem="eRx-u9-qij" secondAttribute="bottom" constant="20" id="qbJ-jQ-9Dk"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="correctionLevelSegmentControl" destination="SQe-D0-EQm" id="5PD-zS-TcR"/>
+                        <outlet property="imageView" destination="eRx-u9-qij" id="r06-zn-vL3"/>
+                        <outlet property="textView" destination="gn2-Oj-aGs" id="w5H-hG-vU7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
         </scene>
     </scenes>
 </document>
