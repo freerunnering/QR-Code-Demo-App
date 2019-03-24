@@ -19,12 +19,14 @@
 	
 	[self.correctionLevelSegmentControl addTarget:self action:@selector(generateQRCode) forControlEvents:UIControlEventValueChanged];
 	
-	self.textView.alwaysBounceVertical = YES;
-	self.textView.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
+	self.scrollView.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
+	
 	self.textView.text = @"Hello World!";
 	self.textView.delegate = self;
 	
 	[self generateQRCode];
+	
+	[self registerForKeyboardNotifications];
 }
 
 -(void)textViewDidChange:(UITextView *)textView{
@@ -76,6 +78,40 @@
 	[qrFilter setValue:correctionLevel forKey:@"inputCorrectionLevel"];
 	
 	return qrFilter.outputImage;
+}
+
+#pragma mark - Keyboard
+
+// Call this method somewhere in your view controller setup code.
+- (void)registerForKeyboardNotifications {
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+// Called when the UIKeyboardDidShowNotification is sent.
+- (void)keyboardWasShown:(NSNotification*)aNotification
+{
+	NSDictionary* info = [aNotification userInfo];
+	CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+	UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
+	self.scrollView.contentInset = contentInsets;
+	self.scrollView.scrollIndicatorInsets = contentInsets;
+	
+	// If active text field is hidden by keyboard, scroll it so it's visible
+	// Your application might not need or want this behavior.
+	CGRect aRect = self.view.frame;
+	aRect.size.height -= kbSize.height;
+	if (!CGRectContainsPoint(aRect, self.textView.frame.origin) ) {
+		CGPoint scrollPoint = CGPointMake(0.0, self.textView.frame.origin.y-kbSize.height);
+		[self.scrollView setContentOffset:scrollPoint animated:YES];
+	}
+}
+
+// Called when the UIKeyboardWillHideNotification is sent
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification{
+	UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+	self.scrollView.contentInset = contentInsets;
+	self.scrollView.scrollIndicatorInsets = contentInsets;
 }
 
 @end
